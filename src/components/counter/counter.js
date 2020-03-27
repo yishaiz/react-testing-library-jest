@@ -1,11 +1,15 @@
 // counter.js
-import React from 'react'
-class Counter extends React.Component {
-  state = {count: 0}
-  increment = () => this.setState(({count}) => ({count: count + 1}))
-  render() {
-    return <button onClick={this.increment}>{this.state.count}</button>
-  }
+import React, { useState } from 'react';
+
+// class Counter extends React.Component {
+function Counter() {
+  // state = { count: 0 };
+  const [count, setCount] = useState(0);
+
+  // increment = () => this.setState(({ count }) => ({ count: count + 1 }));
+  const incrementCount = () => setCount(count => count + 1);
+
+  return <button onClick={incrementCount}>{count}</button>;
 }
 
-export default Counter
+export default Counter;
