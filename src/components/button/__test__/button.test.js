@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import { render, cleanup } from '@testing-library/react';
-// import "jest-dom/extend-expect"
+import renderer from 'react-test-renderer';
 
 import Button from '../button';
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -23,3 +23,7 @@ it('renders button correctly', () => {
   expect(getByTestId('button')).toHaveTextContent('save');
 });
 
+it('matches snapshot', () => {
+  const tree = renderer.create(<Button label="save"></Button>).toJSON();
+    expect(tree).toMatchSnapshot()
+});
